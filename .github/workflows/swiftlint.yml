@@ -1,0 +1,28 @@
+name: SwiftLint
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/**'
+      - '.swiftlint.yml'
+      - '**/*.swift'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/**'
+      - '.swiftlint.yml'
+      - '**/*.swift'
+  workflow_dispatch:
+
+jobs:
+  SwiftLint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
+        with:
+          args: --strict --reporter github-actions-logging

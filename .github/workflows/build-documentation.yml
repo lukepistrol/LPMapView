@@ -1,0 +1,32 @@
+name: build-documentation
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Sources/**'
+  workflow_dispatch:
+
+jobs:
+  build-documentation:
+    runs-on: macOS-12
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Build Documentation
+        run: exec ./.github/scripts/build-docc.sh
+      - name: Init New Branch
+        run: |
+          cd docs
+          git init
+          git add -A
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m 'deploy documentation'
+      - name: Deploy to GitHub Pages
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: docs
+          force: true
+          directory: ./docs
