@@ -1,6 +1,15 @@
+<p>
+  <img src="https://img.shields.io/badge/Swift-5.7-f05318.svg" />
+  <img src="https://img.shields.io/badge/iOS->= 16.0-blue.svg" />
+  <img alt="GitHub" src="https://img.shields.io/github/license/lukepistrol/lpmapview">
+  <a href="https://twitter.com/lukeeep_">
+    <img src="https://img.shields.io/badge/Twitter-@lukeeep_-1e9bf0.svg?style=flat" alt="Twitter: @lukeeep_" />
+  </a>
+</p>
+
 # LPMapView
 
-> ℹ️ See the full documentation [here](https://lukepistrol.github.io/LPMapView/documentation/lpmapview).
+> 📖 See the full documentation [here](https://lukepistrol.github.io/LPMapView/documentation/lpmapview).
 
 A **SwiftUI** wrapper for `MKMapView`.
 
