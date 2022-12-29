@@ -32,6 +32,10 @@ public struct MapView: UIViewRepresentable {
 
     /// Creates a new ``MapView``.
     ///
+    /// - Important: When `showsUserLocation` is `true` make sure
+    /// you have a description for `NSLocationWhenInUseUsageDescription`
+    /// in your app's `Info.plist`.
+    ///
     /// - Parameters:
     ///   - region: A binding defining the `MKCoordinateRegion`.
     ///   - showsUserLocation: A boolean defining whether or not
