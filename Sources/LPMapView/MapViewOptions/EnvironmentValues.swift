@@ -9,19 +9,12 @@ import MapKit
 import SwiftUI
 
 extension EnvironmentValues {
+
+    // MARK: Route
+
     var mapRouteVisibility: MapViewVisibility {
         get { self[MapRouteVisibilityKey.self] }
         set { self[MapRouteVisibilityKey.self] = newValue }
-    }
-
-    var mapAnnotationVisibility: MapViewVisibility {
-        get { self[MapAnnotationVisibilityKey.self] }
-        set { self[MapAnnotationVisibilityKey.self] = newValue }
-    }
-
-    var mapAnnotationTint: UIColor {
-        get { self[MapAnnotationTintKey.self] }
-        set { self[MapAnnotationTintKey.self] = newValue }
     }
 
     var mapRouteTint: UIColor {
@@ -34,10 +27,29 @@ extension EnvironmentValues {
         set { self[MapRouteWidthKey.self] = newValue }
     }
 
+    // MARK: Annotation
+
+    var mapAnnotationVisibility: MapViewVisibility {
+        get { self[MapAnnotationVisibilityKey.self] }
+        set { self[MapAnnotationVisibilityKey.self] = newValue }
+    }
+
+    var mapAnnotationTint: UIColor {
+        get { self[MapAnnotationTintKey.self] }
+        set { self[MapAnnotationTintKey.self] = newValue }
+    }
+
     var mapShowCallout: Bool {
         get { self[MapShowCalloutKey.self] }
         set { self[MapShowCalloutKey.self] = newValue }
     }
+
+    var mapFitAnnotations: Bool {
+        get { self[MapFitAnnotationsKey.self] }
+        set { self[MapFitAnnotationsKey.self] = newValue }
+    }
+
+    // MARK: Configuration
 
     var mapConfiguration: MapViewConfiguration {
         get { self[MapConfigurationKey.self] }

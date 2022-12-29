@@ -35,20 +35,24 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
 
     public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? MapViewAnnotation {
-            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil)
-            annotationView.animatesWhenAdded = false
-            annotationView.markerTintColor = annotation.tint ?? configuration.annotationTint
-            annotationView.displayPriority = .required
-            if let systemImage = annotation.systemImage {
-                annotationView.glyphImage = UIImage(systemName: systemImage)
-                annotationView.leftCalloutAccessoryView = UIImageView(image: .init(systemName: systemImage))
-            }
-            if annotation.title != nil {
-                annotationView.canShowCallout = configuration.showCallout
-                annotationView.rightCalloutAccessoryView = UIView(frame: .zero)
-            }
-            return annotationView
+            return markerAnnotationView(from: annotation)
         }
         return nil
+    }
+
+    private func markerAnnotationView(from annotation: MapViewAnnotation) -> MKMarkerAnnotationView {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        annotationView.animatesWhenAdded = false
+        annotationView.markerTintColor = annotation.tint ?? configuration.annotationTint
+        annotationView.displayPriority = .required
+        if let systemImage = annotation.systemImage {
+            annotationView.glyphImage = UIImage(systemName: systemImage)
+            annotationView.leftCalloutAccessoryView = UIImageView(image: .init(systemName: systemImage))
+        }
+        if annotation.title != nil {
+            annotationView.canShowCallout = configuration.showCallout
+            annotationView.rightCalloutAccessoryView = UIView(frame: .zero)
+        }
+        return annotationView
     }
 }

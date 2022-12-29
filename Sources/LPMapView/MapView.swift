@@ -32,6 +32,7 @@ public struct MapView: UIViewRepresentable {
     @Environment(\.mapShowCallout) private var showCallout
     @Environment(\.mapConfiguration) private var mapConfiguration
     @Environment(\.mapElevationStyle) private var elevationStyle
+    @Environment(\.mapFitAnnotations) private var fitAnnotations
 
     @Binding
     private var region: MKCoordinateRegion
@@ -98,8 +99,10 @@ public struct MapView: UIViewRepresentable {
                 mapView.addAnnotation(point)
             }
         }
-        // TODO: Add a preference for automatically fitting annotations in the visible map rect.
-        mapView.showAnnotations(mapView.annotations, animated: true)
+
+        if fitAnnotations {
+            mapView.showAnnotations(mapView.annotations, animated: true)
+        }
     }
 
     public func makeCoordinator() -> MapCoordinator {

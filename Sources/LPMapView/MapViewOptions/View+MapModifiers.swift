@@ -37,15 +37,19 @@ public extension View {
     ///   - calloutEnabled: Whether or not to show a detail callout
     ///   when an annotation is selected. Note that this will only
     ///   work if the annotation has a title.
+    ///   - fitInVisibleRect: Whether or not to automatically adjust
+    ///   map zoom to fit all annotations.
     func mapAnnotations(
         _ visibility: MapViewVisibility = .visible,
         tint: Color = .red,
-        calloutEnabled: Bool = false
+        calloutEnabled: Bool = false,
+        fitInVisibleRect: Bool = false
     ) -> some View {
         self
             .environment(\.mapAnnotationVisibility, visibility)
             .environment(\.mapAnnotationTint, UIColor(tint))
             .environment(\.mapShowCallout, calloutEnabled)
+            .environment(\.mapFitAnnotations, fitInVisibleRect)
     }
 
     /// Setup options for the map style.

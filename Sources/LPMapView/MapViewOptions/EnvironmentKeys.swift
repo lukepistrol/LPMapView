@@ -8,16 +8,10 @@
 import MapKit
 import SwiftUI
 
+// MARK: Route
+
 struct MapRouteVisibilityKey: EnvironmentKey {
     static let defaultValue = MapViewVisibility.hidden
-}
-
-struct MapAnnotationVisibilityKey: EnvironmentKey {
-    static let defaultValue = MapViewVisibility.visible
-}
-
-struct MapAnnotationTintKey: EnvironmentKey {
-    static let defaultValue = UIColor.systemRed
 }
 
 struct MapRouteTintKey: EnvironmentKey {
@@ -28,9 +22,25 @@ struct MapRouteWidthKey: EnvironmentKey {
     static let defaultValue = 5.0
 }
 
+// MARK: Annotation
+
+struct MapAnnotationVisibilityKey: EnvironmentKey {
+    static let defaultValue = MapViewVisibility.visible
+}
+
+struct MapAnnotationTintKey: EnvironmentKey {
+    static let defaultValue = UIColor.systemRed
+}
+
 struct MapShowCalloutKey: EnvironmentKey {
     static let defaultValue = false
 }
+
+struct MapFitAnnotationsKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
+// MARK: Configuration
 
 struct MapConfigurationKey: EnvironmentKey {
     static let defaultValue = MapViewConfiguration.standard
