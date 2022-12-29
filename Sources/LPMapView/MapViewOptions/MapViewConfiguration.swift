@@ -7,6 +7,14 @@
 
 import Foundation
 
+/// A collection of different types defining the style of the map view.
 public enum MapViewConfiguration {
-    case standard, hybrid, satellite
+    /// The standard map type.
+    case standard
+
+    /// The hybrid map type.
+    case hybrid
+
+    /// The satellite map type.
+    case satellite
 }

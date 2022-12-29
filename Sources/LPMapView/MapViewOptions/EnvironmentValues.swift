@@ -5,8 +5,8 @@
 //  Created by Lukas Pistrol on 29.12.22.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 extension EnvironmentValues {
     var mapRouteVisibility: MapViewVisibility {

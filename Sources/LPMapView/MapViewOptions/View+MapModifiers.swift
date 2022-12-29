@@ -5,11 +5,17 @@
 //  Created by Lukas Pistrol on 29.12.22.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 public extension View {
 
+    /// Setup options for displaying a route between annotations.
+    ///
+    /// - Parameters:
+    ///   - visibility: Whether or not the route will be visible.
+    ///   - tint: The tint color of the route track.
+    ///   - width: The line width of the route track.
     func mapDisplayRoute(
         _ visibility: MapViewVisibility = .visible,
         tint: Color = .blue,
@@ -21,6 +27,16 @@ public extension View {
             .environment(\.mapRouteWidth, width)
     }
 
+    /// Setup options for displaying annotations.
+    ///
+    /// - Parameters:
+    ///   - visibility: Whether or not annotations will be visible.
+    ///   - tint: The default tint color of the annotation. This can
+    ///   be overridden by setting ``MapViewAnnotation/tint`` on
+    ///   ``MapViewAnnotation``.
+    ///   - calloutEnabled: Whether or not to show a detail callout
+    ///   when an annotation is selected. Note that this will only
+    ///   work if the annotation has a title.
     func mapAnnotations(
         _ visibility: MapViewVisibility = .visible,
         tint: Color = .red,
@@ -32,6 +48,13 @@ public extension View {
             .environment(\.mapShowCallout, calloutEnabled)
     }
 
+    /// Setup options for the map style.
+    ///
+    /// - Parameters:
+    ///   - configuration: A configuration option defining the map
+    ///   style.
+    ///   - elevationStyle: Defines how elevation data is handled
+    ///   when rendering the map view.
     func mapConfiguration(
         _ configuration: MapViewConfiguration,
         elevationStyle: MKMapConfiguration.ElevationStyle = .flat

@@ -5,9 +5,22 @@
 //  Created by Lukas Pistrol on 29.12.22.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
+/// A **SwiftUI** wrapper for `MKMapView`.
+///
+/// This offers a couple more features compared to `SwiftUI.Map`.
+///
+/// **Usage:**
+/// ```swift
+/// @State private var coordinateRegion: MKCoordinateRegion = ...
+/// @State private var items: [MapViewAnnotation] = ...
+///
+/// MapView(region: $coordinateRegion, annotations: items)
+///   // connect annotations with lines
+///   .mapDisplayRoute()
+/// ```
 public struct MapView: UIViewRepresentable {
     public typealias UIViewType = MKMapView
 
@@ -29,6 +42,15 @@ public struct MapView: UIViewRepresentable {
     @State
     private var points: [MapViewAnnotation]
 
+    /// Creates a new ``MapView``.
+    ///
+    /// - Parameters:
+    ///   - region: A binding defining the `MKCoordinateRegion`.
+    ///   - showsUserLocation: A boolean defining whether or not
+    ///   to show user location.
+    ///   - userTrackingMode: Sets the behavior for tracking the
+    ///   user's location.
+    ///   - annotations: An array of annotations.
     public init(
         region: Binding<MKCoordinateRegion>,
         showsUserLocation: Bool = false,

@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// A state defining if a certain property is visible or hidden
 public enum MapViewVisibility {
-    case visible, hidden
+    /// The property in question will be visible
+    case visible
+
+    /// The property in question will be hidden
+    case hidden
 }
