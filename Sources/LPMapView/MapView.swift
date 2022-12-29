@@ -98,6 +98,7 @@ public struct MapView: UIViewRepresentable {
                 mapView.addAnnotation(point)
             }
         }
+        // TODO: Add a preference for automatically fitting annotations in the visible map rect.
         mapView.showAnnotations(mapView.annotations, animated: true)
     }
 
