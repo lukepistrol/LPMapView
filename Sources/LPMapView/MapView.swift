@@ -8,19 +8,6 @@
 import MapKit
 import SwiftUI
 
-/// A **SwiftUI** wrapper for `MKMapView`.
-///
-/// This offers a couple more features compared to `SwiftUI.Map`.
-///
-/// **Usage:**
-/// ```swift
-/// @State private var coordinateRegion: MKCoordinateRegion = ...
-/// @State private var items: [MapViewAnnotation] = ...
-///
-/// MapView(region: $coordinateRegion, annotations: items)
-///   // connect annotations with lines
-///   .mapDisplayRoute()
-/// ```
 public struct MapView: UIViewRepresentable {
     public typealias UIViewType = MKMapView
 
