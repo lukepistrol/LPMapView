@@ -14,8 +14,7 @@ public struct MapView: UIViewRepresentable {
     @Environment(\.mapRouteVisibility) private var routeVisibility
     @Environment(\.mapAnnotationVisibility) private var annotationVisibility
     @Environment(\.mapAnnotationTint) private var annotationTint
-    @Environment(\.mapRouteTint) private var routeTint
-    @Environment(\.mapRouteWidth) private var routeWidth
+    @Environment(\.mapRouteStyle) private var routeStyle
     @Environment(\.mapShowCallout) private var showCallout
     @Environment(\.mapConfiguration) private var mapConfiguration
     @Environment(\.mapElevationStyle) private var elevationStyle
@@ -99,10 +98,9 @@ public struct MapView: UIViewRepresentable {
     public func makeCoordinator() -> MapCoordinator {
 
         let configuration = MapCoordinator.Configuration(
-            routeTint: routeTint,
             annotationTint: annotationTint,
-            routeWidth: routeWidth,
-            showCallout: showCallout
+            showCallout: showCallout,
+            routeStyle: routeStyle
         )
 
         return MapCoordinator(configuration: configuration)

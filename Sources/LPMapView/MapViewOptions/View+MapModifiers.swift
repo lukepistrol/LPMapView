@@ -14,17 +14,23 @@ public extension View {
     ///
     /// - Parameters:
     ///   - visibility: Whether or not the route will be visible.
-    ///   - tint: The tint color of the route track.
-    ///   - width: The line width of the route track.
     func mapDisplayRoute(
-        _ visibility: MapViewVisibility = .visible,
-        tint: Color = .blue,
-        width: Double = 5
+        _ visibility: MapViewVisibility = .visible
     ) -> some View {
         self
             .environment(\.mapRouteVisibility, visibility)
-            .environment(\.mapRouteTint, UIColor(tint))
-            .environment(\.mapRouteWidth, width)
+    }
+
+    /// Setup options for drawing the route line.
+    ///
+    /// - Note: This modifier will also set the route visibility
+    /// to `.visible`
+    ///
+    /// - Parameter style: The route line style to use.
+    func mapRouteStyle(_ style: MapRouteStyle) -> some View {
+        self
+            .environment(\.mapRouteStyle, style)
+            .environment(\.mapRouteVisibility, .visible)
     }
 
     /// Setup options for displaying annotations.

@@ -17,14 +17,9 @@ extension EnvironmentValues {
         set { self[MapRouteVisibilityKey.self] = newValue }
     }
 
-    var mapRouteTint: UIColor {
-        get { self[MapRouteTintKey.self] }
-        set { self[MapRouteTintKey.self] = newValue }
-    }
-
-    var mapRouteWidth: Double {
-        get { self[MapRouteWidthKey.self] }
-        set { self[MapRouteWidthKey.self] = newValue }
+    var mapRouteStyle: MapRouteStyle {
+        get { self[MapRouteStyleKey.self] }
+        set { self[MapRouteStyleKey.self] = newValue }
     }
 
     // MARK: Annotation

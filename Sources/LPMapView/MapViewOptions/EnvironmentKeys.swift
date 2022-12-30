@@ -14,12 +14,8 @@ struct MapRouteVisibilityKey: EnvironmentKey {
     static let defaultValue = MapViewVisibility.hidden
 }
 
-struct MapRouteTintKey: EnvironmentKey {
-    static let defaultValue = UIColor.systemBlue
-}
-
-struct MapRouteWidthKey: EnvironmentKey {
-    static let defaultValue = 5.0
+struct MapRouteStyleKey: EnvironmentKey {
+    static let defaultValue = MapRouteStyle.solid(5)
 }
 
 // MARK: Annotation

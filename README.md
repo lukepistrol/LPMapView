@@ -49,17 +49,25 @@ options for the map view.
 
 ```swift
 func mapDisplayRoute(
-  _ visibility: MapViewVisibility = .visible, 
-  tint: Color = .blue, 
-  width: Double = 5
+  _ visibility: MapViewVisibility = .visible
 ) -> some View
 ```
 
 #### Parameters
 
 - `visibility`: Whether or not the route will be visible.
-- `tint`: The tint color of the route track.
-- `width`: The line width of the route track.
+
+### mapRouteStyle
+
+#### Declaration
+
+```swift
+func mapRouteStyle(_ style: MapRouteStyle) -> some View
+```
+
+#### Parameters
+
+- `style`: The route line style to use.
 
 ### mapAnnotations
 

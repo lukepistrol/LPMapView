@@ -11,10 +11,9 @@ import MapKit
 public class MapCoordinator: NSObject, MKMapViewDelegate {
 
     struct Configuration {
-        var routeTint: UIColor
         var annotationTint: UIColor
-        var routeWidth: Double
         var showCallout: Bool
+        var routeStyle: MapRouteStyle
     }
 
     var configuration: Configuration
@@ -26,8 +25,11 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
     public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyLine = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: polyLine)
-            renderer.strokeColor = configuration.routeTint
-            renderer.lineWidth = configuration.routeWidth
+            renderer.strokeColor = configuration.routeStyle.tint
+            renderer.lineWidth = configuration.routeStyle.lineWidth
+            renderer.lineCap = configuration.routeStyle.lineCap
+            renderer.lineJoin = configuration.routeStyle.lineJoin
+            renderer.lineDashPattern = configuration.routeStyle.lineDashPattern
             return renderer
         }
         return MKPolygonRenderer()
