@@ -26,7 +26,7 @@ public struct MapView: UIViewRepresentable {
     private var showsUserLocation: Bool = false
     private var userTrackingMode: MKUserTrackingMode = .none
 
-    @State
+    @Binding
     private var points: [MapViewAnnotation]
 
     /// Creates a new ``MapView``.
@@ -46,12 +46,12 @@ public struct MapView: UIViewRepresentable {
         region: Binding<MKCoordinateRegion>,
         showsUserLocation: Bool = false,
         userTrackingMode: MKUserTrackingMode = .none,
-        annotations: [MapViewAnnotation]
+        annotations: Binding<[MapViewAnnotation]>
     ) {
         self._region = region
+        self._points = annotations
         self.showsUserLocation = showsUserLocation
         self.userTrackingMode = userTrackingMode
-        self.points = annotations
     }
 
     public func makeUIView(context: Context) -> MKMapView {

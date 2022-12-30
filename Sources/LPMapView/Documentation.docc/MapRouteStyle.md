@@ -4,27 +4,54 @@
 
 Use a ``MapRouteStyle`` to define what a route line will look like on the map view.
 
-There are two standard implementations available: ``solid(_:tint:)`` and ``dashed(_:tint:)``. Additionally ``custom(_:tint:lineCap:lineJoin:lineDashPattern:)`` allows to create a custom implementation.
+There are two standard implementations available: ``solid(_:tint:)`` and ``dashed(_:tint:)``.
 
 ## Customization
 
-To create a custom implementation simply extend ``MapRouteStyle`` and add a static property or method which calls and returns ``custom(_:tint:lineCap:lineJoin:lineDashPattern:)``.
+In order to create a custom ``MapRouteStyle`` create a new struct conforming to this protocol.
 
 ```swift
-extension MapRouteStyle {
-  static let myRouteStyle: Self {
-    .custom(...)
+struct MyMapRouteStyle: MapRouteStyle {
+  var tint: UIColor = UIColor(...)
+  var lineWidth: Double = 2.5
+  var lineCap: CGLineCap = .round
+  var lineJoin: CGLineJoin = .round
+  var lineDashPattern: [NSNumber]?
+}
+```
+
+Now the style can be used on your ``MapView`` like so.
+
+```swift
+MapView(...)
+  .mapRouteStyle(MyMapRouteStyle())
+```
+
+Additionally you can also create an extension to ``MapRouteStyle``.
+
+```swift
+extension MapRouteStyle where Self == MyMapRouteStyle {
+  static var myStyle: MyMapRouteStyle {
+    MyMapRouteStyle()
   }
 }
 ```
 
+With that extension in place the style can now be obtained like so.
+
+```swift
+MapView(...)
+  .mapRouteStyle(.myStyle)
+```
+
 ## Topics
 
-### Predefined Styles
+### Solid Style
 
 - ``solid(_:tint:)``
+- ``SolidMapRouteStyle``
+
+### Dashed Style
+
 - ``dashed(_:tint:)``
-
-### Custom Style
-
-- ``custom(_:tint:lineCap:lineJoin:lineDashPattern:)``
+- ``DashedMapRouteStyle``

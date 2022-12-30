@@ -15,7 +15,7 @@ struct MapRouteVisibilityKey: EnvironmentKey {
 }
 
 struct MapRouteStyleKey: EnvironmentKey {
-    static let defaultValue = MapRouteStyle.solid(5)
+    static let defaultValue: MapRouteStyle = .solid(5)
 }
 
 // MARK: Annotation
