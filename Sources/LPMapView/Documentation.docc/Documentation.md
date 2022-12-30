@@ -16,3 +16,4 @@ A SwiftUI wrapper for a MKMapView.
 
 - ``MapViewConfiguration``
 - ``MapViewVisibility``
+- ``MapRouteStyle``
