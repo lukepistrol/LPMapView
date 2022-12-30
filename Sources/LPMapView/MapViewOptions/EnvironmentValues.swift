@@ -55,4 +55,14 @@ extension EnvironmentValues {
         get { self[MapElevationStyleKey.self] }
         set { self[MapElevationStyleKey.self] = newValue }
     }
+
+    var mapPOIFilter: MKPointOfInterestFilter {
+        get { self[MapPOIKey.self] }
+        set { self[MapPOIKey.self] = newValue }
+    }
+
+    var mapSelectableFeatures: MKMapFeatureOptions {
+        get { self[MapSelectableFeaturesKey.self] }
+        set { self[MapSelectableFeaturesKey.self] = newValue }
+    }
 }

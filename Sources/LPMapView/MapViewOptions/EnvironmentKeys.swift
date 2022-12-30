@@ -45,3 +45,11 @@ struct MapConfigurationKey: EnvironmentKey {
 struct MapElevationStyleKey: EnvironmentKey {
     static let defaultValue = MKMapConfiguration.ElevationStyle.flat
 }
+
+struct MapPOIKey: EnvironmentKey {
+    static let defaultValue = MKPointOfInterestFilter.includingAll
+}
+
+struct MapSelectableFeaturesKey: EnvironmentKey {
+    static let defaultValue: MKMapFeatureOptions = []
+}

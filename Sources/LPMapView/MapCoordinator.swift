@@ -14,6 +14,7 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
         var annotationTint: UIColor
         var showCallout: Bool
         var routeStyle: MapRouteStyle
+        var onSelection: ((MKAnnotation) -> Void)?
     }
 
     var configuration: Configuration
@@ -40,6 +41,10 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
             return markerAnnotationView(from: annotation)
         }
         return nil
+    }
+
+    public func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+        configuration.onSelection?(annotation)
     }
 
     private func markerAnnotationView(from annotation: MapViewAnnotation) -> MKMarkerAnnotationView {

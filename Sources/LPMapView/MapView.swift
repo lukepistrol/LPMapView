@@ -19,6 +19,8 @@ public struct MapView: UIViewRepresentable {
     @Environment(\.mapConfiguration) private var mapConfiguration
     @Environment(\.mapElevationStyle) private var elevationStyle
     @Environment(\.mapFitAnnotations) private var fitAnnotations
+    @Environment(\.mapPOIFilter) private var poiFilter
+    @Environment(\.mapSelectableFeatures) private var selectableFeatures
 
     @Binding
     private var region: MKCoordinateRegion
@@ -28,6 +30,8 @@ public struct MapView: UIViewRepresentable {
 
     @Binding
     private var points: [MapViewAnnotation]
+
+    private var onSelection: ((MKAnnotation) -> Void)?
 
     /// Creates a new ``MapView``.
     ///
@@ -46,12 +50,14 @@ public struct MapView: UIViewRepresentable {
         region: Binding<MKCoordinateRegion>,
         showsUserLocation: Bool = false,
         userTrackingMode: MKUserTrackingMode = .none,
-        annotations: Binding<[MapViewAnnotation]>
+        annotations: Binding<[MapViewAnnotation]>,
+        onSelection: ((MKAnnotation) -> Void)? = nil
     ) {
         self._region = region
         self._points = annotations
         self.showsUserLocation = showsUserLocation
         self.userTrackingMode = userTrackingMode
+        self.onSelection = onSelection
     }
 
     public func makeUIView(context: Context) -> MKMapView {
@@ -60,16 +66,22 @@ public struct MapView: UIViewRepresentable {
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = showsUserLocation
         mapView.userTrackingMode = userTrackingMode
-
+        mapView.selectableMapFeatures = selectableFeatures
+        
         let preferredConfig: MKMapConfiguration
 
         switch mapConfiguration {
         case .standard:
-            preferredConfig = MKStandardMapConfiguration(elevationStyle: elevationStyle)
+            let config = MKStandardMapConfiguration(elevationStyle: elevationStyle)
+            config.pointOfInterestFilter = poiFilter
+            preferredConfig = config
         case .hybrid:
-            preferredConfig = MKHybridMapConfiguration(elevationStyle: elevationStyle)
+            let config = MKHybridMapConfiguration(elevationStyle: elevationStyle)
+            config.pointOfInterestFilter = poiFilter
+            preferredConfig = config
         case .satellite:
-            preferredConfig = MKImageryMapConfiguration(elevationStyle: elevationStyle)
+            let config = MKImageryMapConfiguration(elevationStyle: elevationStyle)
+            preferredConfig = config
         }
         mapView.preferredConfiguration = preferredConfig
         return mapView
@@ -100,7 +112,8 @@ public struct MapView: UIViewRepresentable {
         let configuration = MapCoordinator.Configuration(
             annotationTint: annotationTint,
             showCallout: showCallout,
-            routeStyle: routeStyle
+            routeStyle: routeStyle,
+            onSelection: onSelection
         )
 
         return MapCoordinator(configuration: configuration)
