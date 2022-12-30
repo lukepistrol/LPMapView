@@ -46,6 +46,8 @@ public struct MapView: UIViewRepresentable {
     ///   - userTrackingMode: Sets the behavior for tracking the
     ///   user's location.
     ///   - annotations: An array of annotations.
+    ///   - onSelection: A callback passing in a `MKAnnotation`
+    ///   item that was selected in the ``MapView``.
     public init(
         region: Binding<MKCoordinateRegion>,
         showsUserLocation: Bool = false,

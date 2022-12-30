@@ -91,7 +91,9 @@ map zoom to fit all annotations.
 ```swift
 func mapConfiguration(
   _ configuration: MapViewConfiguration, 
-  elevationStyle: MKMapConfiguration.ElevationStyle = .flat
+  elevationStyle: MKMapConfiguration.ElevationStyle = .flat,
+  poiFilter: MKPointOfInterestFilter = .includingAll,
+  selectableFeatures: MKMapFeatureOptions = []
 ) -> some View
 ```
 
@@ -101,3 +103,8 @@ func mapConfiguration(
 style.
 - `elevationStyle`: Defines how elevation data is handled
 when rendering the map view.
+- `poiFilter`: A filter that includes or excludes point of
+interest categories from a map view, local search, or local
+search completer.
+- `selectableFeatures`: Describes which selectable features
+the map responds to.
