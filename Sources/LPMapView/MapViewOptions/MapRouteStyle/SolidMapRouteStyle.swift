@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A ``MapRouteStyle`` defining a solid line with the given width and tint color.
 public struct SolidMapRouteStyle: MapRouteStyle {
     public var tint: UIColor
 

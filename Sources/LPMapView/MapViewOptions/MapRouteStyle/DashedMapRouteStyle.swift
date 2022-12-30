@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A ``MapRouteStyle`` defining a dashed line with the given width and tint color.
 public struct DashedMapRouteStyle: MapRouteStyle {
     public var tint: UIColor
 
