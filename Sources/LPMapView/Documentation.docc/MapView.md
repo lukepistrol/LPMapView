@@ -19,7 +19,8 @@ MapView(
   annotations: items
 )
 .mapDisplayRoute() // connect annotations with lines
-.mapAnnotations(.hidden) // hide annotation markers
+.mapRouteStyle(.dashed(2.5, tint: .systemRed) // Use a dashed line
+.mapAnnotations(.visible, tint: .mint) // show annotations with custom tint
 .mapConfiguration(.hybrid) // use the hybrid map style
 ```
 
