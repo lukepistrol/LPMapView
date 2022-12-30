@@ -154,6 +154,11 @@ public struct MapView: UIViewRepresentable {
         mapView.removeOverlays(mapView.overlays)
         mapView.removeAnnotations(mapView.annotations)
 
+        mapView.showsUserLocation = showsUserLocation
+        mapView.userTrackingMode = userTrackingMode
+        mapView.selectableMapFeatures = selectableFeatures
+        mapView.preferredConfiguration = preferredConfiguration()
+
         if routeVisibility == .visible {
             let polyline = MKPolyline(coordinates: points.map { $0.coordinate }, count: points.count)
             mapView.addOverlay(polyline)
