@@ -15,6 +15,7 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
         var showCallout: Bool
         var routeStyle: MapRouteStyle
         var onSelection: ((MKAnnotation) -> Void)?
+        var onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)?
     }
 
     var configuration: Configuration
@@ -61,5 +62,14 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
             annotationView.rightCalloutAccessoryView = UIView(frame: .zero)
         }
         return annotationView
+    }
+
+    @objc func action(sender: Any?) {
+        if let longPress = sender as? UILongPressGestureRecognizer,
+           let mapView = longPress.view as? MKMapView {
+            let location = longPress.location(in: mapView)
+            let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
+            configuration.onLongPress?(longPress.state, coordinates)
+        }
     }
 }
