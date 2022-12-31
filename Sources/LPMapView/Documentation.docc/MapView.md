@@ -108,3 +108,27 @@ interest categories from a map view, local search, or local
 search completer.
 - `selectableFeatures`: Describes which selectable features
 the map responds to.
+
+### mapUserInteraction
+
+**Declaration**
+
+```swift
+func mapUserInteraction(
+  zoom: Bool = true, 
+  scroll: Bool = true, 
+  pitch: Bool = true, 
+  rotate: Bool = true
+) -> some View
+```
+
+**Parameters**
+
+- `zoom`: A Boolean value that determines whether the user may
+use pinch gestures to zoom in and out of the map.
+- `scroll`: A Boolean value that determines whether the user
+may scroll around the map.
+- `pitch`: A Boolean value that indicates whether the map uses
+the camera’s pitch information.
+- `rotate`: A Boolean value that indicates whether the map uses
+the camera’s heading information.

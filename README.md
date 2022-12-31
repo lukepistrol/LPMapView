@@ -58,6 +58,8 @@ func mapDisplayRoute(
 
 - `visibility`: Whether or not the route will be visible.
 
+---
+
 ### mapRouteStyle
 
 #### Declaration
@@ -69,6 +71,8 @@ func mapRouteStyle(_ style: MapRouteStyle) -> some View
 #### Parameters
 
 - `style`: The route line style to use.
+
+---
 
 ### mapAnnotations
 
@@ -94,6 +98,8 @@ when an annotation is selected. Note that this will only
 work if the annotation has a title.
 - `fitInVisibleRect`: Whether or not to automatically adjust
 map zoom to fit all annotations.
+
+---
 
 ### mapConfiguration
 
@@ -122,4 +128,32 @@ the map responds to.
 
 ---
 
-<a href="https://www.buymeacoffee.com/lukeeep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+### mapUserInteraction
+
+#### Declaration
+
+```swift
+func mapUserInteraction(
+  zoom: Bool = true, 
+  scroll: Bool = true, 
+  pitch: Bool = true, 
+  rotate: Bool = true
+) -> some View
+```
+
+#### Parameters
+
+- `zoom`: A Boolean value that determines whether the user may
+use pinch gestures to zoom in and out of the map.
+- `scroll`: A Boolean value that determines whether the user
+may scroll around the map.
+- `pitch`: A Boolean value that indicates whether the map uses
+the camera’s pitch information.
+- `rotate`: A Boolean value that indicates whether the map uses
+the camera’s heading information.
+
+---
+
+<a href="https://www.buymeacoffee.com/lukeeep" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+</a>
