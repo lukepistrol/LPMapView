@@ -26,6 +26,9 @@ public class MapViewAnnotation: NSObject, MKAnnotation {
     /// The color which will be used to tint the annotation marker.
     public var tint: UIColor?
 
+    /// The display priority of the annotation view.
+    public var displayPriority: MKFeatureDisplayPriority
+
     /// Creates a new ``MapViewAnnotation``.
     ///
     /// - Parameters:
@@ -36,17 +39,20 @@ public class MapViewAnnotation: NSObject, MKAnnotation {
     ///   - systemImage: The string describing a SFSymbol which will be
     ///   used as the annotation's icon.
     ///   - tint: The color which will be used to tint the annotation marker.
+    ///   - displayPriority: The display priority of the annotation view.
     public init(
         coordinate: CLLocationCoordinate2D,
         title: String? = nil,
         subtitle: String? = nil,
         systemImage: String? = nil,
-        tint: UIColor? = nil
+        tint: UIColor? = nil,
+        displayPriotity: MKFeatureDisplayPriority = .required
     ) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
         self.systemImage = systemImage
         self.tint = tint
+        self.displayPriority = displayPriotity
     }
 }

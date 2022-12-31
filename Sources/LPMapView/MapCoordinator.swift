@@ -52,7 +52,7 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
         let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil)
         annotationView.animatesWhenAdded = false
         annotationView.markerTintColor = annotation.tint ?? configuration.annotationTint
-        annotationView.displayPriority = .required
+        annotationView.displayPriority = annotation.displayPriority
         if let systemImage = annotation.systemImage {
             annotationView.glyphImage = UIImage(systemName: systemImage)
             annotationView.leftCalloutAccessoryView = UIImageView(image: .init(systemName: systemImage))
