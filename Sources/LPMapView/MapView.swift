@@ -13,16 +13,24 @@ public struct MapView: UIViewRepresentable {
 
     // MARK: - Environment
 
+    // MARK: Route
     @Environment(\.mapRouteVisibility) private var routeVisibility
+    @Environment(\.mapRouteStyle) private var routeStyle
+    // MARK: Annotation
     @Environment(\.mapAnnotationVisibility) private var annotationVisibility
     @Environment(\.mapAnnotationTint) private var annotationTint
-    @Environment(\.mapRouteStyle) private var routeStyle
     @Environment(\.mapShowCallout) private var showCallout
+    @Environment(\.mapFitAnnotations) private var fitAnnotations
+    // MARK: Configuration
     @Environment(\.mapConfiguration) private var mapConfiguration
     @Environment(\.mapElevationStyle) private var elevationStyle
-    @Environment(\.mapFitAnnotations) private var fitAnnotations
     @Environment(\.mapPOIFilter) private var poiFilter
     @Environment(\.mapSelectableFeatures) private var selectableFeatures
+    // MARK: UserInteraction
+    @Environment(\.mapInteractionZoom) private var zoomEnabled
+    @Environment(\.mapInteractionScroll) private var scrollEnabled
+    @Environment(\.mapInteractionPitch) private var pitchEnabled
+    @Environment(\.mapInteractionRotate) private var rotateEnabled
 
     // MARK: - Properties
 
@@ -144,6 +152,10 @@ public struct MapView: UIViewRepresentable {
         mapView.showsUserLocation = showsUserLocation
         mapView.userTrackingMode = userTrackingMode
         mapView.selectableMapFeatures = selectableFeatures
+        mapView.isZoomEnabled = zoomEnabled
+        mapView.isScrollEnabled = scrollEnabled
+        mapView.isPitchEnabled = pitchEnabled
+        mapView.isRotateEnabled = rotateEnabled
 
         mapView.preferredConfiguration = preferredConfiguration()
         mapView.addGestureRecognizer(longPressGesture(in: context))
@@ -157,6 +169,10 @@ public struct MapView: UIViewRepresentable {
         mapView.showsUserLocation = showsUserLocation
         mapView.userTrackingMode = userTrackingMode
         mapView.selectableMapFeatures = selectableFeatures
+        mapView.isZoomEnabled = zoomEnabled
+        mapView.isScrollEnabled = scrollEnabled
+        mapView.isPitchEnabled = pitchEnabled
+        mapView.isRotateEnabled = rotateEnabled
         mapView.preferredConfiguration = preferredConfiguration()
 
         if routeVisibility == .visible {

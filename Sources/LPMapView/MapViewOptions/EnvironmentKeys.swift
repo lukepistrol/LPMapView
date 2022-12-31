@@ -53,3 +53,21 @@ struct MapPOIKey: EnvironmentKey {
 struct MapSelectableFeaturesKey: EnvironmentKey {
     static let defaultValue: MKMapFeatureOptions = []
 }
+
+// MARK: User Interaction
+
+struct MapZoomInteractionKey: EnvironmentKey {
+    static let defaultValue = true
+}
+
+struct MapScrollInteractionKey: EnvironmentKey {
+    static let defaultValue = true
+}
+
+struct MapPitchInteractionKey: EnvironmentKey {
+    static let defaultValue = true
+}
+
+struct MapRotateInteractionKey: EnvironmentKey {
+    static let defaultValue = true
+}

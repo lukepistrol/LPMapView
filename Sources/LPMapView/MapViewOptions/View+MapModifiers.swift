@@ -82,4 +82,29 @@ public extension View {
             .environment(\.mapPOIFilter, poiFilter)
             .environment(\.mapSelectableFeatures, selectableFeatures)
     }
+
+    /// Setup options for enabling/disabling user interaction modes
+    /// on the ``MapView``.
+    ///
+    /// - Parameters:
+    ///   - zoom: A Boolean value that determines whether the user may
+    ///   use pinch gestures to zoom in and out of the map.
+    ///   - scroll: A Boolean value that determines whether the user
+    ///   may scroll around the map.
+    ///   - pitch: A Boolean value that indicates whether the map uses
+    ///   the camera’s pitch information.
+    ///   - rotate: A Boolean value that indicates whether the map uses
+    ///   the camera’s heading information.
+    func mapUserInteraction(
+        zoom: Bool = true,
+        scroll: Bool = true,
+        pitch: Bool = true,
+        rotate: Bool = true
+    ) -> some View {
+        self
+            .environment(\.mapInteractionZoom, zoom)
+            .environment(\.mapInteractionScroll, scroll)
+            .environment(\.mapInteractionPitch, pitch)
+            .environment(\.mapInteractionRotate, rotate)
+    }
 }

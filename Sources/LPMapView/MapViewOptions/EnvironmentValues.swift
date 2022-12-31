@@ -65,4 +65,26 @@ extension EnvironmentValues {
         get { self[MapSelectableFeaturesKey.self] }
         set { self[MapSelectableFeaturesKey.self] = newValue }
     }
+
+    // MARK: User Interaction
+
+    var mapInteractionZoom: Bool {
+        get { self[MapZoomInteractionKey.self] }
+        set { self[MapZoomInteractionKey.self] = newValue }
+    }
+
+    var mapInteractionScroll: Bool {
+        get { self[MapScrollInteractionKey.self] }
+        set { self[MapScrollInteractionKey.self] = newValue }
+    }
+
+    var mapInteractionPitch: Bool {
+        get { self[MapPitchInteractionKey.self] }
+        set { self[MapPitchInteractionKey.self] = newValue }
+    }
+
+    var mapInteractionRotate: Bool {
+        get { self[MapRotateInteractionKey.self] }
+        set { self[MapRotateInteractionKey.self] = newValue }
+    }
 }
