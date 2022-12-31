@@ -16,6 +16,7 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
         var routeStyle: MapRouteStyle
         var onSelection: ((MKAnnotation) -> Void)?
         var onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)?
+        var userLocationChanged: ((MKUserLocation?, Error?) -> Void)?
     }
 
     var configuration: Configuration
@@ -46,6 +47,14 @@ public class MapCoordinator: NSObject, MKMapViewDelegate {
 
     public func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
         configuration.onSelection?(annotation)
+    }
+
+    public func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        configuration.userLocationChanged?(userLocation, nil)
+    }
+
+    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
+        configuration.userLocationChanged?(nil, error)
     }
 
     private func markerAnnotationView(from annotation: MapViewAnnotation) -> MKMarkerAnnotationView {

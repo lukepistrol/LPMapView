@@ -45,6 +45,7 @@ public struct MapView: UIViewRepresentable {
 
     private var onSelection: ((MKAnnotation) -> Void)?
     private var onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)?
+    private var userLocationChanged: ((MKUserLocation?, Error?) -> Void)?
 
     // MARK: - Init
 
@@ -66,13 +67,16 @@ public struct MapView: UIViewRepresentable {
     ///   - onLongPress: A callback passing in the state of a
     ///   `UILongPressGestureRecognizer` and a `CLLocationCoordinate2D`
     ///   from where the gesture happened on the ``MapView``.
+    ///   - userLocationChanged: A callback passing in the changed
+    ///   `MKUserLocation`.
     public init(
         region: Binding<MKCoordinateRegion>,
         showsUserLocation: Bool = false,
         userTrackingMode: MKUserTrackingMode = .none,
         annotations: Binding<[MapViewAnnotation]>,
         onSelection: ((MKAnnotation) -> Void)? = nil,
-        onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)? = nil
+        onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)? = nil,
+        userLocationChanged: ((MKUserLocation?, Error?) -> Void)? = nil
     ) {
         self._region = region
         self._points = annotations
@@ -80,6 +84,7 @@ public struct MapView: UIViewRepresentable {
         self.userTrackingMode = userTrackingMode
         self.onSelection = onSelection
         self.onLongPress = onLongPress
+        self.userLocationChanged = userLocationChanged
     }
 
     /// Creates a new ``MapView``.
@@ -103,7 +108,8 @@ public struct MapView: UIViewRepresentable {
         showsUserLocation: Bool = false,
         userTrackingMode: MKUserTrackingMode = .none,
         annotations: Binding<[MapViewAnnotation]>,
-        onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)?
+        onLongPress: ((UIGestureRecognizer.State, CLLocationCoordinate2D) -> Void)?,
+        userLocationChanged: ((MKUserLocation?, Error?) -> Void)? = nil
     ) {
         self._region = region
         self._points = annotations
@@ -111,6 +117,7 @@ public struct MapView: UIViewRepresentable {
         self.userTrackingMode = userTrackingMode
         self.onSelection = nil
         self.onLongPress = onLongPress
+        self.userLocationChanged = userLocationChanged
     }
 
     /// Creates a new ``MapView``.
@@ -133,7 +140,8 @@ public struct MapView: UIViewRepresentable {
         showsUserLocation: Bool = false,
         userTrackingMode: MKUserTrackingMode = .none,
         annotations: Binding<[MapViewAnnotation]>,
-        onSelection: ((MKAnnotation) -> Void)?
+        onSelection: ((MKAnnotation) -> Void)?,
+        userLocationChanged: ((MKUserLocation?, Error?) -> Void)? = nil
     ) {
         self._region = region
         self._points = annotations
@@ -141,6 +149,7 @@ public struct MapView: UIViewRepresentable {
         self.userTrackingMode = userTrackingMode
         self.onSelection = onSelection
         self.onLongPress = nil
+        self.userLocationChanged = userLocationChanged
     }
 
     // MARK: - UIViewRepresentable
@@ -186,7 +195,8 @@ public struct MapView: UIViewRepresentable {
             }
         }
 
-        if fitAnnotations {
+        // fit annotations only when not tracking user location
+        if fitAnnotations && userTrackingMode == .none {
             mapView.showAnnotations(mapView.annotations, animated: true)
         }
     }
@@ -198,7 +208,8 @@ public struct MapView: UIViewRepresentable {
             showCallout: showCallout,
             routeStyle: routeStyle,
             onSelection: onSelection,
-            onLongPress: onLongPress
+            onLongPress: onLongPress,
+            userLocationChanged: userLocationChanged
         )
 
         return MapCoordinator(configuration: configuration)
