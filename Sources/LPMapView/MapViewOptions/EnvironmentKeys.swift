@@ -42,6 +42,7 @@ struct MapConfigurationKey: EnvironmentKey {
     static let defaultValue = MapViewConfiguration.standard
 }
 
+@available(iOS 16.0, *)
 struct MapElevationStyleKey: EnvironmentKey {
     static let defaultValue = MKMapConfiguration.ElevationStyle.flat
 }
@@ -50,6 +51,7 @@ struct MapPOIKey: EnvironmentKey {
     static let defaultValue = MKPointOfInterestFilter.includingAll
 }
 
+@available(iOS 16.0, *)
 struct MapSelectableFeaturesKey: EnvironmentKey {
     static let defaultValue: MKMapFeatureOptions = []
 }

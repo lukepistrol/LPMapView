@@ -70,6 +70,7 @@ public extension View {
     ///   search completer.
     ///   - selectableFeatures: Describes which selectable features
     ///   the map responds to.
+    @available(iOS 16.0, *)
     func mapConfiguration(
         _ configuration: MapViewConfiguration,
         elevationStyle: MKMapConfiguration.ElevationStyle = .flat,
@@ -81,6 +82,24 @@ public extension View {
             .environment(\.mapElevationStyle, elevationStyle)
             .environment(\.mapPOIFilter, poiFilter)
             .environment(\.mapSelectableFeatures, selectableFeatures)
+    }
+
+    /// Setup options for the map style.
+    ///
+    /// - Parameters:
+    ///   - configuration: A configuration option defining the map
+    ///   style.
+    ///   - poiFilter: A filter that includes or excludes point of
+    ///   interest categories from a map view, local search, or local
+    ///   search completer.
+    @available(iOS, deprecated: 16.0)
+    func mapConfiguration(
+        _ configuration: MapViewConfiguration,
+        poiFilter: MKPointOfInterestFilter = .includingAll
+    ) -> some View {
+        self
+            .environment(\.mapConfiguration, configuration)
+            .environment(\.mapPOIFilter, poiFilter)
     }
 
     /// Setup options for enabling/disabling user interaction modes
