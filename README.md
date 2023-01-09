@@ -45,7 +45,7 @@ The above example usage would deliver a map view similar to this one:
 @State private var coordinateRegion: MKCoordinateRegion = ...
 @State private var items: [MapViewAnnotation] = ...
 
-LegacyMapView(
+LMapView(
   region: $coordinateRegion, 
   showsUserLocation: false,
   userTrackingMode: .none,
