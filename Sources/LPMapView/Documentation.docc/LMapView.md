@@ -1,8 +1,10 @@
-# ``LPMapView/MapView``
+# ``LPMapView/LMapView``
 
-A **SwiftUI** wrapper for `MKMapView`.
+A **SwiftUI** wrapper for `MKMapView`. (deprecated)
 
 ## Overview
+
+> Note: Use this for iOS 14 & 15.
 
 This offers a couple more features compared to `SwiftUI.Map`.
 
@@ -90,10 +92,8 @@ map zoom to fit all annotations.
 
 ```swift
 func mapConfiguration(
-  _ configuration: MapViewConfiguration, 
-  elevationStyle: MKMapConfiguration.ElevationStyle = .flat,
-  poiFilter: MKPointOfInterestFilter = .includingAll,
-  selectableFeatures: MKMapFeatureOptions = []
+  _ configuration: MapViewConfiguration,
+  poiFilter: MKPointOfInterestFilter = .includingAll
 ) -> some View
 ```
 
@@ -101,13 +101,9 @@ func mapConfiguration(
 
 - `configuration`: A configuration option defining the map
 style.
-- `elevationStyle`: Defines how elevation data is handled
-when rendering the map view.
 - `poiFilter`: A filter that includes or excludes point of
 interest categories from a map view, local search, or local
 search completer.
-- `selectableFeatures`: Describes which selectable features
-the map responds to.
 
 ### mapUserInteraction
 

@@ -1,15 +1,15 @@
 //
-//  MapView.swift
+//  SwiftUIView.swift
+//  
 //
-//
-//  Created by Lukas Pistrol on 29.12.22.
+//  Created by Lukas Pistrol on 09.01.23.
 //
 
 import MapKit
 import SwiftUI
 
-@available(iOS 16.0, *)
-public struct MapView: UIViewRepresentable {
+@available(iOS, deprecated: 16, renamed: "MapView")
+public struct LMapView: UIViewRepresentable {
     public typealias UIViewType = MKMapView
 
     // MARK: - Environment
@@ -24,16 +24,12 @@ public struct MapView: UIViewRepresentable {
     @Environment(\.mapFitAnnotations) private var fitAnnotations
     // MARK: Configuration
     @Environment(\.mapConfiguration) private var mapConfiguration
-    @Environment(\.mapElevationStyle) private var elevationStyle
     @Environment(\.mapPOIFilter) private var poiFilter
-    @Environment(\.mapSelectableFeatures) private var selectableFeatures
     // MARK: UserInteraction
     @Environment(\.mapInteractionZoom) private var zoomEnabled
     @Environment(\.mapInteractionScroll) private var scrollEnabled
     @Environment(\.mapInteractionPitch) private var pitchEnabled
     @Environment(\.mapInteractionRotate) private var rotateEnabled
-
-    // MARK: - Properties
 
     @Binding
     private var region: MKCoordinateRegion
@@ -153,21 +149,19 @@ public struct MapView: UIViewRepresentable {
         self.userLocationChanged = userLocationChanged
     }
 
-    // MARK: - UIViewRepresentable
-
     public func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = showsUserLocation
         mapView.userTrackingMode = userTrackingMode
-        mapView.selectableMapFeatures = selectableFeatures
+        mapView.mapType = mapStyle()
+        mapView.pointOfInterestFilter = poiFilter
         mapView.isZoomEnabled = zoomEnabled
         mapView.isScrollEnabled = scrollEnabled
         mapView.isPitchEnabled = pitchEnabled
         mapView.isRotateEnabled = rotateEnabled
 
-        mapView.preferredConfiguration = preferredConfiguration()
         mapView.addGestureRecognizer(longPressGesture(in: context))
         return mapView
     }
@@ -178,12 +172,12 @@ public struct MapView: UIViewRepresentable {
 
         mapView.showsUserLocation = showsUserLocation
         mapView.userTrackingMode = userTrackingMode
-        mapView.selectableMapFeatures = selectableFeatures
+        mapView.mapType = mapStyle()
+        mapView.pointOfInterestFilter = poiFilter
         mapView.isZoomEnabled = zoomEnabled
         mapView.isScrollEnabled = scrollEnabled
         mapView.isPitchEnabled = pitchEnabled
         mapView.isRotateEnabled = rotateEnabled
-        mapView.preferredConfiguration = preferredConfiguration()
 
         if routeVisibility == .visible {
             let polyline = MKPolyline(coordinates: points.map { $0.coordinate }, count: points.count)
@@ -218,24 +212,15 @@ public struct MapView: UIViewRepresentable {
 
     // MARK: - Methods
 
-    private func preferredConfiguration() -> MKMapConfiguration {
-        let preferredConfig: MKMapConfiguration
-
+    private func mapStyle() -> MKMapType {
         switch mapConfiguration {
         case .standard:
-            let config = MKStandardMapConfiguration(elevationStyle: elevationStyle)
-            config.pointOfInterestFilter = poiFilter
-            preferredConfig = config
+            return .standard
         case .hybrid:
-            let config = MKHybridMapConfiguration(elevationStyle: elevationStyle)
-            config.pointOfInterestFilter = poiFilter
-            preferredConfig = config
+            return .hybrid
         case .satellite:
-            let config = MKImageryMapConfiguration(elevationStyle: elevationStyle)
-            preferredConfig = config
+            return .satellite
         }
-
-        return preferredConfig
     }
 
     private func longPressGesture(in context: Context) -> UILongPressGestureRecognizer {

@@ -51,6 +51,7 @@ extension EnvironmentValues {
         set { self[MapConfigurationKey.self] = newValue }
     }
 
+    @available(iOS 16.0, *)
     var mapElevationStyle: MKMapConfiguration.ElevationStyle {
         get { self[MapElevationStyleKey.self] }
         set { self[MapElevationStyleKey.self] = newValue }
@@ -61,6 +62,7 @@ extension EnvironmentValues {
         set { self[MapPOIKey.self] = newValue }
     }
 
+    @available(iOS 16.0, *)
     var mapSelectableFeatures: MKMapFeatureOptions {
         get { self[MapSelectableFeaturesKey.self] }
         set { self[MapSelectableFeaturesKey.self] = newValue }

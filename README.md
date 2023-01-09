@@ -1,6 +1,6 @@
 <p>
   <img src="https://img.shields.io/badge/Swift-5.7-f05318.svg" />
-  <img src="https://img.shields.io/badge/iOS->= 16.0-blue.svg" />
+  <img src="https://img.shields.io/badge/iOS->= 14.0-blue.svg" />
   <img alt="GitHub" src="https://img.shields.io/github/license/lukepistrol/lpmapview">
   <a href="https://twitter.com/lukeeep_">
     <img src="https://img.shields.io/badge/Twitter-@lukeeep_-1e9bf0.svg?style=flat" alt="Twitter: @lukeeep_" />
@@ -17,7 +17,7 @@ A **SwiftUI** wrapper for `MKMapView`.
 
 This offers a couple more features compared to `SwiftUI.Map`.
 
-## Usage
+## Usage (iOS 16)
 
 ```swift
 @State private var coordinateRegion: MKCoordinateRegion = ...
@@ -27,7 +27,7 @@ MapView(
   region: $coordinateRegion, 
   showsUserLocation: false,
   userTrackingMode: .none,
-  annotations: items
+  annotations: $items
 )
 .mapDisplayRoute() // connect annotations with lines
 .mapRouteStyle(.dashed(5, tint: .red) // Use a dashed line
@@ -38,6 +38,24 @@ MapView(
 The above example usage would deliver a map view similar to this one:
 
 ![map-preview](./Sources/LPMapView/Documentation.docc/Resources/map-preview.png)
+
+## Usage (iOS 14 & 15)
+
+```swift
+@State private var coordinateRegion: MKCoordinateRegion = ...
+@State private var items: [MapViewAnnotation] = ...
+
+LegacyMapView(
+  region: $coordinateRegion, 
+  showsUserLocation: false,
+  userTrackingMode: .none,
+  annotations: $items
+)
+.mapDisplayRoute() // connect annotations with lines
+.mapRouteStyle(.dashed(5, tint: .red) // Use a dashed line
+.mapAnnotations(.visible, tint: .mint) // show annotations with custom tint
+.mapConfiguration(.hybrid) // use the hybrid map style
+```
 
 ## Modifiers
 
@@ -108,9 +126,9 @@ map zoom to fit all annotations.
 ```swift
 func mapConfiguration(
   _ configuration: MapViewConfiguration, 
-  elevationStyle: MKMapConfiguration.ElevationStyle = .flat,
+  elevationStyle: MKMapConfiguration.ElevationStyle = .flat, // iOS 16 only
   poiFilter: MKPointOfInterestFilter = .includingAll,
-  selectableFeatures: MKMapFeatureOptions = []
+  selectableFeatures: MKMapFeatureOptions = [] // iOS 16 only
 ) -> some View
 ```
 
