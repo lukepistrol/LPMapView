@@ -45,6 +45,7 @@ public extension View {
     ///   work if the annotation has a title.
     ///   - fitInVisibleRect: Whether or not to automatically adjust
     ///   map zoom to fit all annotations.
+    ///   - animated: Whether or not to animate changes.
     func mapAnnotations(
         _ visibility: MapViewVisibility = .visible,
         tint: Color = .red,

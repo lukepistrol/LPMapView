@@ -68,7 +68,8 @@ func mapAnnotations(
   _ visibility: MapViewVisibility = .visible, 
   tint: Color = .red, 
   calloutEnabled: Bool = false, 
-  fitInVisibleRect: Bool = false
+  fitInVisibleRect: Bool = false,
+  animated: Bool = true
 ) -> some View
 ```
 
@@ -83,6 +84,7 @@ when an annotation is selected. Note that this will only
 work if the annotation has a title.
 - `fitInVisibleRect`: Whether or not to automatically adjust
 map zoom to fit all annotations.
+- `animated`: Whether or not to animate changes.
 
 ### mapConfiguration
 
