@@ -36,6 +36,10 @@ struct MapFitAnnotationsKey: EnvironmentKey {
     static let defaultValue = false
 }
 
+struct MapFitAnnotationAnimatedKey: EnvironmentKey {
+    static let defaultValue = true
+}
+
 // MARK: Configuration
 
 struct MapConfigurationKey: EnvironmentKey {

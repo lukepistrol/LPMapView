@@ -45,17 +45,20 @@ public extension View {
     ///   work if the annotation has a title.
     ///   - fitInVisibleRect: Whether or not to automatically adjust
     ///   map zoom to fit all annotations.
+    ///   - animated: Whether or not to animate changes.
     func mapAnnotations(
         _ visibility: MapViewVisibility = .visible,
         tint: Color = .red,
         calloutEnabled: Bool = false,
-        fitInVisibleRect: Bool = false
+        fitInVisibleRect: Bool = false,
+        animated: Bool = true
     ) -> some View {
         self
             .environment(\.mapAnnotationVisibility, visibility)
             .environment(\.mapAnnotationTint, UIColor(tint))
             .environment(\.mapShowCallout, calloutEnabled)
             .environment(\.mapFitAnnotations, fitInVisibleRect)
+            .environment(\.mapFitAnnotationsAnimated, animated)
     }
 
     /// Setup options for the map style.
