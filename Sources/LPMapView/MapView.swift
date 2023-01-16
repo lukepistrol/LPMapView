@@ -22,6 +22,7 @@ public struct MapView: UIViewRepresentable {
     @Environment(\.mapAnnotationTint) private var annotationTint
     @Environment(\.mapShowCallout) private var showCallout
     @Environment(\.mapFitAnnotations) private var fitAnnotations
+    @Environment(\.mapFitAnnotationsAnimated) private var animated
     // MARK: Configuration
     @Environment(\.mapConfiguration) private var mapConfiguration
     @Environment(\.mapElevationStyle) private var elevationStyle
@@ -158,7 +159,7 @@ public struct MapView: UIViewRepresentable {
     public func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
-        mapView.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: animated)
         mapView.showsUserLocation = showsUserLocation
         mapView.userTrackingMode = userTrackingMode
         mapView.selectableMapFeatures = selectableFeatures
@@ -198,7 +199,7 @@ public struct MapView: UIViewRepresentable {
 
         // fit annotations only when not tracking user location
         if fitAnnotations && userTrackingMode == .none {
-            mapView.showAnnotations(mapView.annotations, animated: true)
+            mapView.showAnnotations(mapView.annotations, animated: animated)
         }
     }
 

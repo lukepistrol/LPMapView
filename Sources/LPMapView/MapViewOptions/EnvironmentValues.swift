@@ -44,6 +44,11 @@ extension EnvironmentValues {
         set { self[MapFitAnnotationsKey.self] = newValue }
     }
 
+    var mapFitAnnotationsAnimated: Bool {
+        get { self[MapFitAnnotationAnimatedKey.self] }
+        set { self[MapFitAnnotationAnimatedKey.self] = newValue }
+    }
+
     // MARK: Configuration
 
     var mapConfiguration: MapViewConfiguration {

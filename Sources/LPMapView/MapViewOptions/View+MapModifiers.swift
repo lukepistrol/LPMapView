@@ -49,13 +49,15 @@ public extension View {
         _ visibility: MapViewVisibility = .visible,
         tint: Color = .red,
         calloutEnabled: Bool = false,
-        fitInVisibleRect: Bool = false
+        fitInVisibleRect: Bool = false,
+        animated: Bool = true
     ) -> some View {
         self
             .environment(\.mapAnnotationVisibility, visibility)
             .environment(\.mapAnnotationTint, UIColor(tint))
             .environment(\.mapShowCallout, calloutEnabled)
             .environment(\.mapFitAnnotations, fitInVisibleRect)
+            .environment(\.mapFitAnnotationsAnimated, animated)
     }
 
     /// Setup options for the map style.
